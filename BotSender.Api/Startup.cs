@@ -26,6 +26,7 @@ namespace BotSender
         {
             services.AddControllers();
             Bot.Get();
+            Bot.HandleUpdatesAsync();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
