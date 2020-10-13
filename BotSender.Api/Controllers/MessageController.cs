@@ -1,29 +1,28 @@
 ﻿using BotSender.Api.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Telegram.Bot.Types;
 
 namespace BotSender.Api.Controllers
 {
     [ApiController]
+    [Route("api/message/update")]
     public class MessageController: Controller
     {
-        private readonly Bot bot;
-
-        public MessageController(Bot bot)
+        [HttpGet]
+        public IActionResult Get()
         {
-            this.bot = bot;
+            return Ok("Started");
         }
 
-        [Route("api/message/update")]
+        [HttpPost]
         public async Task<IActionResult> Update([FromBody] Update update)
         {
-            var commands = bot.Commands;
+            if (update == null) return Ok();
+
+            var commands = Bot.Commands;
             var message = update.Message;
-            var client = await bot.Get();
+            var client = await Bot.Get();
 
             foreach (var command in commands)
             {

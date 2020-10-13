@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Telegram.Bot;
 
 namespace BotSender
 {
@@ -23,8 +24,6 @@ namespace BotSender
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<AppSettings>();
-            services.AddSingleton<Bot>();
             services.AddControllers();
         }
 

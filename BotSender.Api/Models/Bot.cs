@@ -7,18 +7,12 @@ using Telegram.Bot;
 
 namespace BotSender.Api.Models
 {
-    public class Bot
+    public static class Bot
     {
-        private TelegramBotClient client;
-        private readonly AppSettings appSettings;
-        public IReadOnlyList<Command> Commands { get; private set; }
+        private static TelegramBotClient client;
+        public static IReadOnlyList<Command> Commands { get; private set; }
 
-        public Bot(AppSettings appSettings)
-        {
-            this.appSettings = appSettings;
-        }
-
-        public async Task<TelegramBotClient> Get()
+        public static async Task<TelegramBotClient> Get()
         {
             if (client != null)
             {
@@ -26,10 +20,10 @@ namespace BotSender.Api.Models
             }
 
             Commands = new List<Command>();
-            Commands.Append(new HelloCommand(appSettings));
+            Commands.Append(new HelloCommand());
 
-            client = new TelegramBotClient(appSettings.Key);
-            var hook = string.Format(appSettings.Url, "api/message/update");
+            client = new TelegramBotClient(AppSettings.Key);
+            var hook = string.Format(AppSettings.Url, "api/message/update");
             await client.SetWebhookAsync(hook);
 
             return client;

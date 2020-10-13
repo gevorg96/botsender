@@ -8,9 +8,6 @@ namespace BotSender.Api.Models.Commands
     {
         public override string Name => "hello";
 
-        public HelloCommand(AppSettings appSettings) : base(appSettings)
-        { }
-
         public override async Task Execute(Message message, TelegramBotClient client)
         {
             var chatId = message.Chat.Id;
