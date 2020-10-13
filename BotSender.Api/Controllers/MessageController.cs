@@ -22,6 +22,7 @@ namespace BotSender.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Update([FromBody] Update update)
         {
+            updates.Add(update);
             if (update == null) return Ok();
 
             var commands = Bot.Commands;
