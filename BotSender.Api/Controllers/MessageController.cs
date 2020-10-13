@@ -1,5 +1,6 @@
 ﻿using BotSender.Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Telegram.Bot.Types;
 
@@ -9,10 +10,13 @@ namespace BotSender.Api.Controllers
     [Route("api/message/update")]
     public class MessageController: Controller
     {
+        static List<Update> updates = new List<Update>();
+
+
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("Started");
+            return Ok(updates);
         }
 
         [HttpPost]
