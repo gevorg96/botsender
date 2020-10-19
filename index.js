@@ -5,5 +5,5 @@ var bot = new TelegramBot(token, { polling: true });
 
 bot.onText(/command1/, function (msg, match) {
     var fromId = msg.from.id; // Получаем ID отправителя
-    bot.sendMessage(fromId, "test пройден!");
+    bot.sendMessage(fromId, "Тест пройден!!!");
 });
