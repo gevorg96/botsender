@@ -36,9 +36,14 @@ app.get('/messages', (req : Request, res : Response) => {
   res.end('OK');
 });
 
+async function readBody (req: Request) {
+  return await req.body.toJSON();
+}
+
 app.post('/messages', (req : Request, res : Response) => {
-  mess = mess.concat(req.body);
-  console.log(req.body);
+  const body = readBody(req);
+  mess = mess.concat(body);
+  console.log(JSON.stringify(body));
   res.send('OK')
 });
 
