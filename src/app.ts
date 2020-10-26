@@ -21,30 +21,19 @@ app.get('/', (req : Request, res : Response) => {
 });
 
 app.get('/messages', (req : Request, res : Response) => {
-  
   const mess: Message = {
     phone: req.query.phone?.toString(),  
     text: req.query.text?.toString()
   }
-
-  // const mess: Message = {
-  //   phone: "123",  
-  //   text: "432423423"
-  // }
-
   messages = messages.concat(mess);
   res.end('OK');
 });
 
-async function readBody (req: Request) {
-  return await req.body.toJSON();
-}
+
+app.use(express.json());
 
 app.post('/messages', (req : Request, res : Response) => {
-  const body = readBody(req).then(x => {
-    mess = mess.concat(x);
-    console.log(JSON.stringify(x));  
-  }).catch(err => console.log(err));
+  console.log(req.body)
   res.send('OK')
 });
 
