@@ -41,9 +41,10 @@ async function readBody (req: Request) {
 }
 
 app.post('/messages', (req : Request, res : Response) => {
-  const body = readBody(req);
-  mess = mess.concat(body);
-  console.log(JSON.stringify(body));
+  const body = readBody(req).then(x => {
+    mess = mess.concat(x);
+    console.log(JSON.stringify(x));  
+  });
   res.send('OK')
 });
 
