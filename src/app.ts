@@ -44,7 +44,7 @@ app.post('/messages', (req : Request, res : Response) => {
   const body = readBody(req).then(x => {
     mess = mess.concat(x);
     console.log(JSON.stringify(x));  
-  });
+  }).catch(err => console.log(err));
   res.send('OK')
 });
 
