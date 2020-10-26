@@ -14,8 +14,10 @@ interface Message {
 
 let messages: Message[] = [];
 
+let mess: any[] = []
+
 app.get('/', (req : Request, res : Response) => {
-  res.send(`Bot works. \n` + messages.map(x => `${x.phone}: ${x.text}.\n`));
+  res.send(`Bot works. \n` + messages.map(x => `${x.phone}: ${x.text}.\n`) + mess.map(x => x.toString()));
 });
 
 app.get('/messages', (req : Request, res : Response) => {
@@ -32,6 +34,12 @@ app.get('/messages', (req : Request, res : Response) => {
 
   messages = messages.concat(mess);
   res.end('OK');
+});
+
+app.post('/messages', (req : Request, res : Response) => {
+  mess = mess.concat(req.body);
+  console.log(req.body);
+  res.send('OK')
 });
 
 app.get('/deleteKeys', (req : Request, res : Response) => {
