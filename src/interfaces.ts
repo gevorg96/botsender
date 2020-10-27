@@ -40,3 +40,21 @@ export interface IMessageRexExps {
     messages: any,
     routes: RegExp[]
 }
+
+export interface SmsMessage {
+    // секретный код
+    secret: string,
+    // телефон, который прислал сообщение
+    from: string,
+    // тело сообщения
+    message: string,
+    // время получения сообщения
+    sent_timestamp: string,
+    // телефон, который получил сообщение
+    sent_to: string,
+    // уникальный идентификатор сообщения
+    message_id: string,
+    // устройство 
+    device_id: string
+}
+    
