@@ -16,7 +16,9 @@ app.get('/', (req : Request, res : Response) => {
 
 app.post('/messages', (req : Request, res : Response) => {
   const sms = req.body as SmsMessage;
-  console.log(sms)
+  if (sms.from === '900') {
+    console.log(sms)
+  }
   res.send('OK')
 });
 
